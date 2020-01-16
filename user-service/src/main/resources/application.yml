@@ -41,7 +41,10 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: com.theOne.domain
 
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone : http://127.0.0.1:8761/eureka/eureka
+eureka:
+  client:
+    service-url:
+      defaultZone : http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1

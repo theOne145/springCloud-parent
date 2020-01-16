@@ -1,0 +1,18 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: consumer-server
+eureka:
+  client:
+    service-url:
+      defaultZone : http://127.0.0.1:8761/eureka/
+    #拉取服务列表
+    registry-fetch-interval-seconds: 30
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+#user-service :
+#  ribbon :
+#      #设置ribbon 对user-service服务进行负载均衡的方式为随机
+#      NFLoadBalancerRuleClassName : com.netflix.loadbalancer.RandomRule

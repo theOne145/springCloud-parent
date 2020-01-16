@@ -16,8 +16,25 @@ eureka:
 # =====================================================================================
 
 
+#单点eureka
+#server:
+#  port: 8761
+#spring:
+#  application:
+#    name: eureka-server
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone : http://127.0.0.1:8761/eureka/
+#  instance:
+#    prefer-ip-address: true
+#    ip-address: 127.0.0.1
 
-#多个eureka服务端相互注册（eurekaServer1中的defaultZone中的DEFAULT_URL为eurekaServer2和eurekaServer3的地址）
+# =====================================================================================
+
+
+
+#集群eureka服务端相互注册（eurekaServer1中的defaultZone中的DEFAULT_URL为eurekaServer2和eurekaServer3的地址）
 
 #eurekaServer1
 
@@ -33,7 +50,13 @@ eureka:
 #  instance:
 #    prefer-ip-address: true
 #    ip-address: 192.168.10.1
-
+#    #默认心跳周期（30秒注册一次）
+#    lease-renewal-interval-in-seconds: 30
+#    #最小过期时长(90没有进行心跳, 将不再进行心跳注册,认为服务失效-宕机)
+#    lease-expiration-duration-in-seconds: 90
+#  server:
+#    #(服务失效-宕机60秒将服务剔除服务列表)
+#    eviction-interval-timer-in-ms: 60000
 
 # -------------------------------------------------------------------------------------
 
@@ -52,7 +75,13 @@ eureka:
 #  instance:
 #    prefer-ip-address: true
 #    ip-address: 192.168.10.2
-
+#    #默认心跳周期（30秒注册一次）
+#    lease-renewal-interval-in-seconds: 30
+#    #最小过期时长(90没有进行心跳, 将不再进行心跳注册,认为服务失效-宕机)
+#    lease-expiration-duration-in-seconds: 90
+#  server:
+#    #(服务失效-宕机60秒将服务剔除服务列表)
+#    eviction-interval-timer-in-ms: 60000
 
 # -------------------------------------------------------------------------------------
 
@@ -71,7 +100,13 @@ eureka:
 #  instance:
 #    prefer-ip-address: true
 #    ip-address: 192.168.10.3
-
+#    #默认心跳周期（30秒注册一次）
+#    lease-renewal-interval-in-seconds: 30
+#    #最小过期时长(90没有进行心跳, 将不再进行心跳注册,认为服务失效-宕机)
+#    lease-expiration-duration-in-seconds: 90
+#  server:
+#    #(服务失效-宕机60秒将服务剔除服务列表)
+#    eviction-interval-timer-in-ms: 60000
 
 # ======================================================================================
 
@@ -102,3 +137,7 @@ eureka:
 #  client:
 #    service-url:
 #      defaultZone : http://192.168.10.4:8761/eureka/,http://192.168.10.5:8762/eureka/,http://192.168.10.3:8763/eureka/
+#user-service :
+#  ribbon :
+#      #设置ribbon 对user-service服务进行负载均衡的方式为随机
+#      NFLoadBalancerRuleClassName : com.netflix.loadbalancer.RandomRule
