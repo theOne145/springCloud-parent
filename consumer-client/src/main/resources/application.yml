@@ -12,6 +12,19 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1
+feign :
+  hystrix :
+    enabled : true
+#Hystrix :
+#  command :
+#    default :
+#      execution :
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds : 3000
+#ribbon:
+#  ConnectTimeout : 500
+#  ReadTimeout : 2000
 #user-service :
 #  ribbon :
 #      #设置ribbon 对user-service服务进行负载均衡的方式为随机

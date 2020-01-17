@@ -1,0 +1,33 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: gate-way
+eureka:
+  client:
+    service-url:
+      defaultZone : http://127.0.0.1:8761/eureka/
+zuul:
+  prefix: api
+  routes:
+    user-server:
+      path: /user/**
+      serviceId: user-server
+      strip-prefix: false
+  ignored-services:
+    - consumer-server
+#  strip-prefix: false  #去除前缀
+# 访问路径 http://127.0.0.1:8080/api/user/user/1
+#zuul默认去eureka中拉取服务列表，注册默认的routes
+Hystrix :
+  command :
+    default :
+      execution :
+        isolation:
+          thread:
+            timeoutInMilliseconds : 6000
+ribbon:
+  ConnectTimeout : 1000
+  ReadTimeout : 2000
+# (2000+1000)*2 = 6000
+#   timeoutInMilliseconds >= ( ConnectTimeout + ReadTimeout ) *2
